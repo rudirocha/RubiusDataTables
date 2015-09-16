@@ -1,0 +1,21 @@
+{
+  "name": "rudirocha/data-tables-bundle",
+  "type": "symfony-bundle",
+  "description": "Integrate Symfony 2 with Jquery Data tables",
+  "keywords": ["Datatables", "symfony", "bundle", "tables", "jquery"],
+  "homepage": "https://github.com/egzakt/UnifikDatabaseConfigBundle",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Rúdi Rocha",
+      "email": "rudi.rochan@gmail.com"
+    }
+  ],
+  "require": {
+    "symfony/symfony": "~2.4"
+  },
+  "autoload": {
+    "psr-0": { "Rubius\\DataTablesBundle": "" }
+  },
+  "target-dir": "Rubius/DataTablesBundle"
+}

@@ -1,0 +1,3 @@
+rubius_data_tables_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: RubiusDataTablesBundle:Default:index }

@@ -1,0 +1,4 @@
+services:
+#    rubius_data_tables.example:
+#        class: Rubius\DataTablesBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @Author: Rudi Rocha <rudi.rocha@gmail.com>
+ * @Project: RubiusDataTablesBundle
+ */
 namespace Rubius\DataTablesBundle;
 
 use Rubius\DataTablesBundle\DependencyInjection\CompilerPass\DataTablesCompilerPass;

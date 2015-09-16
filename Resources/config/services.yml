@@ -1,8 +1,7 @@
 services:
-    datagrid.factory:
-        class: SliceBundle\Grid\GridFactoryNew
-
-    abstract.datagrid.strategy:
+    dataTable.factory:
+        class: Rubius\DataTablesBundle\Factory\DataTablesFactory
+    abstract.dataTable.strategy:
         public: false
         abstract: true
         arguments:
@@ -10,3 +9,9 @@ services:
             - "@templating"
             - "@translator"
             - "@request_stack"
+#    Example
+#    users.strategy:
+#          class: Rubius\ClassNameSpace
+#          parent: abstract.dataTable.strategy
+#          tags:
+#            - { name: dataTable.strategy, alias: users }

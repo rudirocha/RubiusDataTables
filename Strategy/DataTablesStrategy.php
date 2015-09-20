@@ -99,6 +99,9 @@ abstract class DataTablesStrategy
         return json_encode($this->buildDtTableObject($ajaxSource));
     }
 
+    /**
+     * @return array
+     */
     public function getData()
     {
         //todo: Implement Custom QueryBuilders to allow direct SQL or anothers :)
@@ -216,7 +219,7 @@ abstract class DataTablesStrategy
      * @param $ajaxSource
      * @return array
      */
-    protected function buildDtTableObject($ajaxSource)
+    public function buildDtTableObject($ajaxSource)
     {
         $tableStructure = [
             "sAjaxSource" => sprintf("%s", $ajaxSource),

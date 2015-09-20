@@ -15,15 +15,16 @@ class DataTablesFactory
     private $tables = [];
 
     /**
+     * @param string $alias
      * @return array
      */
-    public function getTables()
+    public function getTable($alias)
     {
-        return $this->tables;
+        return $this->tables[$alias];
     }
 
     /**
-     * @param array $alias
+     * @param string $alias
      */
     public function addTable($alias)
     {

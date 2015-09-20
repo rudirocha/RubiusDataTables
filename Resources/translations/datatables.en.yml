@@ -1,0 +1,12 @@
+datatables:
+    object:
+        next: Next
+        previous: Previous
+        emptyTable: "No results"
+        gridInfo: "Total of _TOTAL_ result(s) showing (_START_ to _END_)"
+        gridNoRecords: "No Results..."
+        gridProcessing: "Searching..."
+        gridLengthMenu: "Showing _MENU_ records"
+        gridSearchBox: "Search"
+        gridFilteredText: ''
+        gridAllResults: 'All'

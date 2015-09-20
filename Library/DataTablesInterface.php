@@ -20,6 +20,11 @@ interface DataTablesInterface
     public function getDataTableObject($ajaxSource = '');
 
     /**
+     * Build your column structure defining $this->setColumns($columnsArray)
+     */
+    public function defineColumns();
+
+    /**
      * @param $ajaxSource
      * @return array
      */

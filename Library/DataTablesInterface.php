@@ -36,9 +36,7 @@ interface DataTablesInterface
     public function getData();
 
     /**
-     * @param QueryBuilder $qb
-     * @return mixed
      */
-    public function setWhereStatement($qb);
+    public function setWhereStatement();
 
 }

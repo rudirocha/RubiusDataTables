@@ -14,11 +14,12 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
 use Rubius\DataTablesBundle\Library\ColumnObject;
+use Rubius\DataTablesBundle\Library\DataTablesInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Templating\EngineInterface;
 use Symfony\Component\Translation\DataCollectorTranslator;
 
-abstract class DataTablesStrategy
+abstract class DataTablesStrategy implements DataTablesInterface
 {
 
     /**
@@ -105,7 +106,9 @@ abstract class DataTablesStrategy
     public function getData()
     {
         //todo: Implement Custom QueryBuilders to allow direct SQL or anothers :)
-
+        $this->setWhereStatement();
+        $this->setSortStatement();
+        
         $counterQb = clone($this->getQuerybuilder());
         //set grid limits and offset
         $this->getQueryBuilder()
@@ -140,10 +143,9 @@ abstract class DataTablesStrategy
     }
 
     /**
-     * @param QueryBuilder $qb
-     * @return QueryBuilder
+     * Set auto sort statement
      */
-    protected function setSortStatement(QueryBuilder $qb)
+    protected function setSortStatement()
     {
         $cols = $this->getColumns();
 
@@ -160,13 +162,11 @@ abstract class DataTablesStrategy
                 $sortableColumn = sprintf("%s.%s", $col->getTableAlias(), $col->getAlias());
             }
 
-            $qb->addOrderBy(
+            $this->getQuerybuilder()->addOrderBy(
                 $sortableColumn,
                 $this->getRequest()->get(self::GRID_SORT_TYPE)
             );
         }
-
-        return $qb;
     }
 
     /**
@@ -226,16 +226,16 @@ abstract class DataTablesStrategy
             "processing" => true,
             "paginate" => true,
             "language" => [
-                'emptyTable' => $this->getTranslator()->trans('datatables.object.emptyTable', null, 'datatables'),
-                'info' => $this->getTranslator()->trans('datatables.object.gridInfo', null, 'datatables'),
-                'zeroRecords' => $this->getTranslator()->trans('datatables.object.gridNoRecords', null, 'datatables'),
-                'processing' => $this->getTranslator()->trans('datatables.object.gridProcessing', null, 'datatables'),
-                'lengthMenu' => $this->getTranslator()->trans('datatables.object.gridLengthMenu', null, 'datatables'),
-                'search' => $this->getTranslator()->trans('datatables.object.gridSearchBox', null, 'datatables'),
-                'infoFiltered' => $this->getTranslator()->trans('datatables.object.gridFilteredText', null, 'datatables'),
+                'emptyTable' => $this->getTranslator()->trans('datatables.object.emptyTable', [], 'datatables'),
+                'info' => $this->getTranslator()->trans('datatables.object.gridInfo', [], 'datatables'),
+                'zeroRecords' => $this->getTranslator()->trans('datatables.object.gridNoRecords', [], 'datatables'),
+                'processing' => $this->getTranslator()->trans('datatables.object.gridProcessing', [], 'datatables'),
+                'lengthMenu' => $this->getTranslator()->trans('datatables.object.gridLengthMenu', [], 'datatables'),
+                'search' => $this->getTranslator()->trans('datatables.object.gridSearchBox', [], 'datatables'),
+                'infoFiltered' => $this->getTranslator()->trans('datatables.object.gridFilteredText', [], 'datatables'),
                 'paginate' => [
-                    'next' => $this->getTranslator()->trans('datatables.object.next', null, 'datatables'),
-                    'previous' => $this->getTranslator()->trans('datatables.object.previous', null, 'datatables'),
+                    'next' => $this->getTranslator()->trans('datatables.object.next', [], 'datatables'),
+                    'previous' => $this->getTranslator()->trans('datatables.object.previous', [], 'datatables'),
                 ],
             ],
             'lengthMenu' => [

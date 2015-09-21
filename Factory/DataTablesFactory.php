@@ -5,6 +5,7 @@
  */
 
 namespace Rubius\DataTablesBundle\Factory;
+use Rubius\DataTablesBundle\Library\DataTablesInterface;
 
 /**
  * Class DataTablesFactory
@@ -20,23 +21,23 @@ class DataTablesFactory
      */
     public function getTable($alias)
     {
-        return $this->tables[$alias];
+
+        if (!isset($this->tables[$alias])) {
+            throw new \RuntimeException(sprintf("DataTable with name [%s] does not exists.", $alias));
+        }
+
+        $dtTable = $this->tables[$alias];
+        $dtTable->defineColumns();
+
+        return $dtTable;
     }
 
     /**
      * @param string $alias
      */
-    public function addTable($alias)
+    public function addTable(DataTablesInterface $table, $alias)
     {
-        $table = $this->tables[$alias];
-        if (!isset($table)) {
-            throw new \RuntimeException(sprintf("DataTable with name [%s] does not exists.", $alias));
-        }
-
-        $dtTable = $table;
-        $dtTable->defineColumns();
-
-        return $dtTable;
+        $this->tables[$alias] = $table;
     }
 
 

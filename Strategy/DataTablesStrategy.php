@@ -150,14 +150,14 @@ abstract class DataTablesStrategy
         if ($this->getRequest()->has(self::GRID_SORT_COL_PARAM)
         ) {
             /**
-             * ColumnObject $col
+             * @var ColumnObject $col
              */
             $col = $cols[$this->getRequest()->get(self::GRID_SORT_COL_PARAM)];
 
-            if ($col->getIsCustomField()) {
+            if (!is_null($col->getDbField())) {
                 $sortableColumn = sprintf("%s.%s", $col->getTableAlias(), $col->getDbField());
             } else {
-                $sortableColumn = sprintf("%s.%s", $col->getTableAlias(), $col->getAlias());
+                $sortableColumn = sprintf("%s.%s", $col->getTableAlias(), $col->getColumnAlias());
             }
 
             $this->getQuerybuilder()->addOrderBy(

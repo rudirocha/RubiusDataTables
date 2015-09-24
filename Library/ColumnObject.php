@@ -30,6 +30,11 @@ class ColumnObject
     private $columnAlias;
 
     /**
+     * @var string The attribute to use in case to need to rename that at query
+     */
+    private $dbField;
+
+    /**
      * @var array extra parameters of DataTables Plugin
      */
     private $extraParameters = array();
@@ -167,5 +172,19 @@ class ColumnObject
         return $this;
     }
 
+    /**
+     * @return string
+     */
+    public function getDbField()
+    {
+        return $this->dbField;
+    }
 
+    /**
+     * @param string $dbField
+     */
+    public function setDbField($dbField)
+    {
+        $this->dbField = $dbField;
+    }
 }

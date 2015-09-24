@@ -14,12 +14,12 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
 use Rubius\DataTablesBundle\Library\ColumnObject;
-use Rubius\DataTablesBundle\Library\DataTablesInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Templating\EngineInterface;
 use Symfony\Component\Translation\DataCollectorTranslator;
 
-abstract class DataTablesStrategy implements DataTablesInterface
+abstract class DataTablesStrategy
 {
 
     /**
@@ -57,7 +57,7 @@ abstract class DataTablesStrategy implements DataTablesInterface
     private $columns = [];
 
     /**
-     * @var RequestStack
+     * @var Request
      */
     private $request;
 
@@ -83,7 +83,7 @@ abstract class DataTablesStrategy implements DataTablesInterface
         $this->setEntityManager($entityManager);
         $this->setRenderer($templating);
         $this->setTranslator($translator);
-        $this->setRequest($request);
+        $this->setRequest($request->getCurrentRequest());
     }
 
     /**
@@ -106,9 +106,7 @@ abstract class DataTablesStrategy implements DataTablesInterface
     public function getData()
     {
         //todo: Implement Custom QueryBuilders to allow direct SQL or anothers :)
-        $this->setWhereStatement();
-        $this->setSortStatement();
-        
+
         $counterQb = clone($this->getQuerybuilder());
         //set grid limits and offset
         $this->getQueryBuilder()
@@ -238,9 +236,6 @@ abstract class DataTablesStrategy implements DataTablesInterface
                     'previous' => $this->getTranslator()->trans('datatables.object.previous', [], 'datatables'),
                 ],
             ],
-            'lengthMenu' => [
-                [10, 20, 40],
-            ],
             'fixedHeader' => true,
             "serverSide" => true,
             'columns' => array()
@@ -355,15 +350,15 @@ abstract class DataTablesStrategy implements DataTablesInterface
     }
 
     /**
-     * @return RequestStack
+     * @return \Symfony\Component\HttpFoundation\ParameterBag
      */
     protected function getRequest()
     {
-        return $this->request;
+        return $this->request->query;
     }
 
     /**
-     * @param RequestStack $request
+     * @param Request $request
      */
     protected function setRequest($request)
     {

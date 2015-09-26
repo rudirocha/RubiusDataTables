@@ -50,6 +50,11 @@ class ColumnObject
     private $dataType;
 
     /**
+     * @var string  Translation Domain
+     */
+    private $transDomain = null;
+
+    /**
      * @param string $header
      * @param string $columnAlias
      * @param string $tableAlias
@@ -187,4 +192,21 @@ class ColumnObject
     {
         $this->dbField = $dbField;
     }
+
+    /**
+     * @return string
+     */
+    public function getTransDomain()
+    {
+        return $this->transDomain;
+    }
+
+    /**
+     * @param string $transDomain
+     */
+    public function setTransDomain($transDomain)
+    {
+        $this->transDomain = $transDomain;
+    }
+
 }

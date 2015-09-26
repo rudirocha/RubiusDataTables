@@ -246,7 +246,7 @@ abstract class DataTablesStrategy
          */
         foreach ($this->getColumns() as $col) {
             $column = array(
-                'title' => $this->getTranslator()->trans($col->getHeader()),
+                'title' => $this->getTranslator()->trans($col->getHeader(),[],$col->getTransDomain()),
                 'data' => $col->getColumnAlias(),
                 'orderable' => $col->getSortable()
 

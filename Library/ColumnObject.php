@@ -59,13 +59,14 @@ class ColumnObject
      * @param string $columnAlias
      * @param string $tableAlias
      */
-    public function __construct($header, $columnAlias, $tableAlias)
+    public function __construct($header, $columnAlias, $tableAlias, $translationDomain = null)
     {
         $this->setHeader($header);
         $this->setColumnAlias($columnAlias);
         $this->setTableAlias($tableAlias);
         $this->setSortable();
         $this->setDataType();
+        $this->setTransDomain($translationDomain);
 
     }
 

@@ -187,10 +187,12 @@ class ColumnObject
 
     /**
      * @param string $dbField
+     * @return $this
      */
     public function setDbField($dbField)
     {
         $this->dbField = $dbField;
+        return $this;
     }
 
     /**
@@ -203,10 +205,12 @@ class ColumnObject
 
     /**
      * @param string $transDomain
+     * @return $this
      */
     public function setTransDomain($transDomain)
     {
         $this->transDomain = $transDomain;
+        return $this;
     }
 
 }

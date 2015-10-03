@@ -106,7 +106,7 @@ abstract class DataTablesStrategy
     public function getData()
     {
         //todo: Implement Custom QueryBuilders to allow direct SQL or anothers :)
-
+        $this->setWhereStatement();
         $counterQb = clone($this->getQuerybuilder());
         //set grid limits and offset
         $this->getQueryBuilder()
@@ -136,7 +136,7 @@ abstract class DataTablesStrategy
      */
     protected function getResults($outputType = Query::HYDRATE_OBJECT)
     {
-        $this->setSortStatement($this->getQuerybuilder());
+        $this->setSortStatement();
         return $this->getQueryBuilder()->getQuery()->getResult($outputType);
     }
 

@@ -9,8 +9,15 @@
 
 namespace Rubius\DataTablesBundle\Library;
 
+use Doctrine\ORM\QueryBuilder;
+
 interface DataTablesInterface
 {
+    /**
+     * @return QueryBuilder
+     */
+    public function setQueryBuilderObject();
+
     /**
      * Return Json Structure for the view
      * @param string $ajaxSource
@@ -36,6 +43,7 @@ interface DataTablesInterface
     public function getData();
 
     /**
+     * Set Where statement to QueryBuilder
      */
     public function setWhereStatement();
 

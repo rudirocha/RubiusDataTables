@@ -28,6 +28,7 @@ class DataTablesFactory
 
         $dtTable = $this->tables[$alias];
         $dtTable->defineColumns();
+        $dtTable->setQueryBuilderObject();
 
         return $dtTable;
     }

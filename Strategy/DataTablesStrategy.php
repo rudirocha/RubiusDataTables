@@ -175,7 +175,8 @@ abstract class DataTablesStrategy
     {
         $data = [];
         foreach ($rows as $row) {
-            $data = $this->mapAutomaticFields($row);
+            $dataRow = $this->mapAutomaticFields($row);
+            $data[] = $dataRow;
         }
 
         return $data;

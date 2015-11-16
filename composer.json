@@ -3,11 +3,11 @@
   "type": "symfony-bundle",
   "description": "Integrate Symfony 2 with Jquery Data tables",
   "keywords": ["Datatables", "symfony", "bundle", "tables", "jquery"],
-  "homepage": "https://github.com/egzakt/UnifikDatabaseConfigBundle",
+  "homepage": "https://github.com/rudirocha/RubiusDataTables",
   "license": "MIT",
   "authors": [
     {
-      "name": "Rúdi Rocha",
+      "name": "RÃºdi Rocha",
       "email": "rudi.rocha@gmail.com"
     }
   ],

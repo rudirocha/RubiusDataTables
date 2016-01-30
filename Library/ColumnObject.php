@@ -183,7 +183,11 @@ class ColumnObject
      */
     public function getDbField()
     {
-        return $this->dbField;
+        if (isset($this->dbField) && !empty($this->dbField)) {
+            return $this->dbField;    
+        }
+        return $this->getColumnAlias();
+        
     }
 
     /**
